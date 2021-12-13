@@ -2,7 +2,7 @@
   "profiles": {
     "XorderByMonth": {
       "commandName": "Project",
-      "commandLineArgs": "a b c"
+      "commandLineArgs": "D:\\Photos\\POC"
     }
   }
 }

@@ -1,10 +1,14 @@
-﻿using System;
+﻿using Core;
+using NLog;
+using System;
 using System.IO;
 
 namespace XorderByMonth
 {
     class Program
     {
+        private static Logger _log = LogManager.GetCurrentClassLogger();
+
         static void Main(string[] args)
         {
             foreach (var item in args)
@@ -17,11 +21,26 @@ namespace XorderByMonth
 
         private static void XorderDirectory(string path)
         {
-            var files = Directory.GetFiles(path);
-            foreach (var file in files)
+            try
             {
-
-
+                var core = new XorderCore();
+                var files = Directory.GetFiles(path);
+                foreach (var pathOfFile in files)
+                {
+                    string fileName = Path.GetFileName(pathOfFile);
+                    string directory = Path.GetDirectoryName(pathOfFile);
+                    var date = core.GetDate(fileName);
+                    var subDir = core.GenerateSubFolderName(date);
+                    _log.Debug($"Moving file: {fileName} to: {subDir}");
+                    var pathSubDir = Path.Combine(directory, subDir);
+                    Directory.CreateDirectory(pathSubDir);
+                    string destFileName = Path.Combine(pathSubDir, fileName);
+                    File.Move(pathOfFile, destFileName);
+                }
+            }
+            catch (DirectoryNotFoundException ex)
+            {
+                _log.Error(ex);
             }
         }
     }

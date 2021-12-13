@@ -7,6 +7,10 @@ namespace Core
         public DateTime GetDate(string fileName)
         {
             DateTime ret;
+            if (fileName.StartsWith("SL_MO_"))
+            {
+                fileName = fileName.Substring(6, fileName.Length - 6);
+            }
             string substring = fileName.Substring(4, 8);
             string year = substring.Substring(0, 4);
             string month = substring.Substring(4, 2);
