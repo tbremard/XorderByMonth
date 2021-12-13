@@ -1,0 +1,12 @@
+Input of Console Application : list of directories
+Order each target directory inputed on commandLine
+
+If already ordered do not do anything
+All files to be ordered are in next level
+Each file contain a serie of 8 leters indincating  year, month day
+  => for a given valid file name : extract the datetime 
+  => datetime = GetDate(fileName)
+each file must be moved to subfolder named yyyy-mm
+    For any date : create valid subfolder name
+	==> GenerateSubFolderName()
+	
