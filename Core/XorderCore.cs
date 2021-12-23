@@ -1,15 +1,39 @@
 ﻿using System;
+using System.Drawing;
+using System.Drawing.Imaging;
+using System.IO;
+using System.Text;
+using System.Text.RegularExpressions;
 
 namespace Core
 {
     public class XorderCore
     {
-        public DateTime GetDate(string fileName)
+        private static Regex r = new Regex(":");
+
+        public DateTime GetDate(string pathOfFile)
         {
             DateTime ret;
+            string fileName = Path.GetFileName(pathOfFile);
             if (fileName.StartsWith("SL_MO_"))
             {
                 fileName = fileName.Substring(6, fileName.Length - 6);
+            }
+            if(fileName.StartsWith("DSC_"))
+            {
+                if (!File.Exists(pathOfFile))
+                {
+                    throw new FileNotFoundException(pathOfFile);
+                }
+                using (FileStream fs = new FileStream(pathOfFile, FileMode.Open, FileAccess.Read))
+                using (Image myImage = Image.FromStream(fs, false, false))
+                {
+                    PropertyItem propItem = myImage.GetPropertyItem(36867);
+                    string propertyTaken = Encoding.UTF8.GetString(propItem.Value);
+                    int spaceIndex = propertyTaken.IndexOf(' ');
+                    string dateTaken = propertyTaken.Substring(0, spaceIndex).Replace(':', '-');
+                    return DateTime.Parse(dateTaken);
+                }
             }
             string substring = fileName.Substring(4, 8);
             string year = substring.Substring(0, 4);

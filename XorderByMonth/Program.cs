@@ -29,7 +29,7 @@ namespace XorderByMonth
                 {
                     string fileName = Path.GetFileName(pathOfFile);
                     string directory = Path.GetDirectoryName(pathOfFile);
-                    var date = core.GetDate(fileName);
+                    var date = core.GetDate(pathOfFile);
                     var subDir = core.GenerateSubFolderName(date);
                     _log.Debug($"Moving file: {fileName} to: {subDir}");
                     var pathSubDir = Path.Combine(directory, subDir);
