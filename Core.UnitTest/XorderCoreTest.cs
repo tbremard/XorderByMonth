@@ -28,6 +28,27 @@ namespace Core.UnitTest
             Assert.AreEqual(expected, ret);
         }
 
+        [TestCase(@"D:\Photos\Honor9\Max\.outside")]
+        [TestCase(@"D:\Photos\Honor9\Max\Snapchat-500998938.jpg")]
+        public void IsValidFile_WhenInvalidFile_ThenFalse(string fileName)
+        {
+
+            var ret = _sut.IsValidFile(fileName);
+
+            Assert.IsFalse(ret, "file should be invalid: "+fileName);
+        }
+
+        [TestCase(@"D:\Photos\Honor9\Max\VID_20180426_201709.mp4")]
+        [TestCase(@"D:\Photos\Honor9\Max\IMG_20180810_204342.jpg")]
+        public void IsValidFile_WhenValidFile_ThenTrue(string fileName)
+        {
+
+            var ret = _sut.IsValidFile(fileName);
+
+            Assert.IsTrue(ret, "file should be Valid: " + fileName);
+        }
+
+
         [Test]
         public void GenerateSubFolderName_WhenValidDate_ThenValidFolderName()
         {

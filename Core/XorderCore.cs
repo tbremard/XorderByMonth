@@ -3,14 +3,11 @@ using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
 using System.Text;
-using System.Text.RegularExpressions;
 
 namespace Core
 {
     public class XorderCore
     {
-        private static Regex r = new Regex(":");
-
         public DateTime GetDate(string pathOfFile)
         {
             DateTime ret;
@@ -41,6 +38,24 @@ namespace Core
             string day = substring.Substring(6, 2);
             ret = new DateTime(int.Parse(year), int.Parse(month), int.Parse(day));
             return ret;
+        }
+
+        public bool IsValidFile(string fileName)
+        {
+            string[] validExtensions = { ".jpg", ".mp4", ".avi", ".mov" };
+            string lower = fileName.ToLower();
+            if (lower.Contains("snapchat"))
+            {
+                return false;
+            }
+            foreach (var xtension in validExtensions)
+            {
+                if (lower.EndsWith(xtension))
+                {
+                    return true;
+                }
+            }
+            return false;
         }
 
         public string GenerateSubFolderName(DateTime date)
