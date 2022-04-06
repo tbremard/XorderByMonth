@@ -1,8 +1,7 @@
 {
   "profiles": {
     "XorderByMonth": {
-      "commandName": "Project",
-      "commandLineArgs": "D:\\Photos\\Honor9\\Max"
+      "commandName": "Project"
     }
   }
 }

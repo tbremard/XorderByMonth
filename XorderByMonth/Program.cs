@@ -11,11 +11,15 @@ namespace XorderByMonth
 
         static void Main(string[] args)
         {
+            if (args.Length ==0)
+            {
+                Console.WriteLine("XorderByMonth <dir1> <dir2> ...");
+                return;
+            }
             foreach (var item in args)
             {
                 Console.WriteLine("Ordering folder: "+item);
                 XorderDirectory(item);
-
             }
         }
 
