@@ -37,19 +37,19 @@ namespace XorderByMonth
                     {
                         continue;
                     }
-                    var date = core.GetDate(pathOfFile);
-                    var subDir = core.GenerateSubFolderName(date);
-                    _log.Debug($"Moving file: {fileName} to: {subDir}");
-                    var pathSubDir = Path.Combine(directory, subDir);
-                    Directory.CreateDirectory(pathSubDir);
-                    string destFileName = Path.Combine(pathSubDir, fileName);
                     try
                     {
+                        var date = core.GetDate(pathOfFile);
+                        var subDir = core.GenerateSubFolderName(date);
+                        _log.Debug($"Moving file: {fileName} to: {subDir}");
+                        var pathSubDir = Path.Combine(directory, subDir);
+                        Directory.CreateDirectory(pathSubDir);
+                        string destFileName = Path.Combine(pathSubDir, fileName);
                         File.Move(pathOfFile, destFileName);
                     }
                     catch (Exception ex)
                     {
-                        _log.Error("cannot move file: "+ pathOfFile);
+                        _log.Error("Cannot process file: "+ pathOfFile);
                         _log.Error(ex);
                     }
                 }
