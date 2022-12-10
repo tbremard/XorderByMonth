@@ -43,7 +43,15 @@ namespace XorderByMonth
                     var pathSubDir = Path.Combine(directory, subDir);
                     Directory.CreateDirectory(pathSubDir);
                     string destFileName = Path.Combine(pathSubDir, fileName);
-                    File.Move(pathOfFile, destFileName);
+                    try
+                    {
+                        File.Move(pathOfFile, destFileName);
+                    }
+                    catch (Exception ex)
+                    {
+                        _log.Error("cannot move file: "+ pathOfFile);
+                        _log.Error(ex);
+                    }
                 }
             }
             catch (DirectoryNotFoundException ex)

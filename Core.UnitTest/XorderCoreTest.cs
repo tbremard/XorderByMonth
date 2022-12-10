@@ -19,6 +19,7 @@ namespace Core.UnitTest
         [TestCase(2021, 12, 08, "VID_20211208_220844.mp4")]
         [TestCase(2020, 08, 04, "SL_MO_VID_20200804_190358.mp4")]
         [TestCase(2020, 08, 20, "DSC_1599.JPG")]
+        [TestCase(2017, 11, 16, "DSCF8277.JPG")]
         public void GetDate_WhenValidFileName_ThenDateIsParsed(int year, int month, int day, string fileName)
         {
 

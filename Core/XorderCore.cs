@@ -16,7 +16,7 @@ namespace Core
             {
                 fileName = fileName.Substring(6, fileName.Length - 6);
             }
-            if(fileName.StartsWith("DSC_"))
+            if(fileName.StartsWith("DSC"))
             {
                 if (!File.Exists(pathOfFile))
                 {

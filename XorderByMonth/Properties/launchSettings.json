@@ -1,7 +1,8 @@
 {
   "profiles": {
     "XorderByMonth": {
-      "commandName": "Project"
+      "commandName": "Project",
+      "commandLineArgs": "\"D:\\Photos\\2022\\Fuji XM1\\DCIM\\109_FUJI\""
     }
   }
 }

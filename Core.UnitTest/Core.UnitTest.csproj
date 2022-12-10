@@ -19,6 +19,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Update="DSCF8277.JPG">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="DSC_1599.JPG">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
